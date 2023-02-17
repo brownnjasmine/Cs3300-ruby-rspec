@@ -4,6 +4,11 @@
 
 def sum arr
   # YOUR CODE HERE
+  num = 0
+  arr.each do |i|
+    num += i
+  end
+  return num
 end
 
 def max_2_sum arr

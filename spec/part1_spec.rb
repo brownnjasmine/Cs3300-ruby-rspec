@@ -2,18 +2,27 @@
 
 require_relative '../lib/ruby_intro'
 
+#Test within Ruby intro part 1
 describe 'Ruby intro part 1' do
+  #Test sum function
   describe '#sum' do
-
+    #If these tests pass, the subject (it) will have points eq 1
     it 'returns correct sum [1 point]', points: 1 do
+      #Sum must be an integer
       expect(sum([1, 2, 3, 4, 5])).to be_a_kind_of Integer
+      #Sum must equal 15
       expect(sum([1, 2, 3, 4, 5])).to eq(15)
+      #Sum must equal 5, in this case
       expect(sum([1, 2, 3, 4, -5])).to eq(5)
+      #Sum must equal 90, in this case
       expect(sum([1, 2, 3, 4, -5, 5, -100])).to eq(-90)
     end
 
+    #2 points if it passes with an empty array
     it 'works on the empty array [2 points]', points: 2 do
+      #Empty array does not pass an error
       expect { sum([]) }.not_to raise_error
+      #Empty array case should return 0
       expect(sum([])).to be_zero
     end
   end
