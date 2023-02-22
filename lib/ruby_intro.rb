@@ -55,19 +55,63 @@ def starts_with_consonant? s
     return false
   end
 
-  #if s[0] =~ 
-
-  if s[0] =~ /[^aeiou]/
+  if s[0] =~ /(?=[^aeiou])(?=[a-z])/i
     return true;
   end
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  if s.empty?
+    return false
+  end
+
+  lastTwo = s[-2,-1]
+
+  if (s =~ /(?=[0-1])/) && (lastTwo =~ /(?=[0])/)
+    return true
+  end
+  
+
+  return false
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  def initialize(isbn, price)
+    unless isbn.is_a?(String)
+      raise ArgumentError.new("Only strings are allowed as isbn")
+    else
+      if isbn.empty?
+        raise ArgumentError.new("No empty strings as isbn")
+      else
+        @isbn = isbn
+      end
+    end
+
+    unless price.is_a?(Numeric)
+      raise ArgumentError.new("Only numbers are allowed as prices")
+    else
+      if price <= 0
+        raise ArgumentError.new("Price cannot be 0 or below")
+      else
+        @price = price
+      end
+    end
+  end
+
+  attr_reader :isbn
+  attr_writer :isbn
+
+  attr_reader :price
+  attr_writer :price
+
+  def price_as_string
+    numPrice = price.to_f
+    priceString = "%.2f" % numPrice
+      
+    return "$#{priceString}"
+  end
+
 end
